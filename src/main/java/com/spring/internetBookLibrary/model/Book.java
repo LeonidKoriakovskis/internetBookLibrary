@@ -1,25 +1,38 @@
 package com.spring.internetBookLibrary.model;
 
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "book")
 public class Book {
-    Integer id;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "bookId")
+    Integer bookId;
+    @Column(name = "bookName")
     String bookName;
-
+    @Column(name = "serialName")
     String serialName;
-
+    @Column(name = "booksAuthor")
     String booksAuthor;
-
+    @Column(name = "description")
     String description;
-
+    @Column(name = "isbn")
     String isbn;
-
+    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @JoinColumn(name = "authorId"   )
     Author author;
+
+    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @JoinColumn(name = "publisherId")
+    private Publisher publisher;
 
     public Book() {
     }
 
-    public Book(Integer id, String bookName, String serialName, String booksAuthor, String description, String isbn, Author author) {
-        this.id = id;
+    public Book(Integer bookId, String bookName, String serialName, String booksAuthor, String description, String isbn, Author author) {
+        this.bookId = bookId;
         this.bookName = bookName;
         this.serialName = serialName;
         this.booksAuthor = booksAuthor;
@@ -37,12 +50,12 @@ public class Book {
         this.author = author;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getBookId() {
+        return bookId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setBookId(Integer bookId) {
+        this.bookId = bookId;
     }
 
     public String getBookName() {

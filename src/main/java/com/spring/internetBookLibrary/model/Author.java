@@ -1,19 +1,33 @@
 package com.spring.internetBookLibrary.model;
 
 
+import jakarta.persistence.*;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "author")
 public class Author {
-
-    Integer id;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "author_id")
+    Integer authorId;
+    @Column(name = "author_name")
     String authorName;
-
+    @Column(name = "description")
     String description;
+    @OneToMany(fetch = FetchType.LAZY,
+            mappedBy = "author",
+            cascade = {CascadeType.PERSIST,CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH})
+    List<Book> booksList=new ArrayList<>();
 
     public Author() {
     }
 
-    public Author(Integer id, String authorName, String description) {
-        this.id = id;
+    public Author(Integer authorId, String authorName, String description) {
+        this.authorId = authorId;
         this.authorName = authorName;
         this.description = description;
     }
@@ -23,12 +37,20 @@ public class Author {
         this.description = description;
     }
 
-    public Integer getId() {
-        return id;
+    public void add(Book tempBook) {
+        if (booksList == null){
+            booksList = new ArrayList<>();
+        }
+        booksList.add(tempBook);
+        tempBook.setAuthor(this);
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public Integer getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(Integer authorId) {
+        this.authorId = authorId;
     }
 
     public String getAuthorName() {
@@ -45,5 +67,13 @@ public class Author {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Book> getBooksList() {
+        return booksList;
+    }
+
+    public void setBooksList(List<Book> booksList) {
+        this.booksList = booksList;
     }
 }
