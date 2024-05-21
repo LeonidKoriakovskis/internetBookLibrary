@@ -4,12 +4,14 @@ package com.spring.internetBookLibrary.service;
 import com.spring.internetBookLibrary.model.Author;
 import com.spring.internetBookLibrary.model.Book;
 import com.spring.internetBookLibrary.repository.AuthorRepository;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Primary
 public class AuthorServiceImpl implements AuthorService {
     final AuthorRepository authorRepository;
     public AuthorServiceImpl(AuthorRepository authorRepository) {

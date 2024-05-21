@@ -30,13 +30,13 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/">Home <span class="sr-only"></span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/book/list">Books </a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/book">Books </a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/publisher/list">Publishers </a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/publisher">Publishers </a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/author/list">Authors </a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/author">Authors </a>
             </li>
         </ul>
     </div>

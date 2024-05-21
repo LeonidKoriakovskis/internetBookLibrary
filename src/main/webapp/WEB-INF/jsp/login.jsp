@@ -1,72 +1,73 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"  %>
-<%@ page contentType="text/html;charset=UTF-8" %>
-
-
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <title>Login Page</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Reference Bootstrap files -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+            font-size: 1rem;
+        }
+        .form-container {
+            max-width: 700px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            margin-bottom: 40px;
+        }
+        a {
+            margin-left: 25px;
+        }
+    </style>
 </head>
 <body>
-<div>
-    <div id="loginbox" style="margin-top: 50px;"
-         class="mainbox col-md-3 col-md-offset-2 col-sm-6 col-sm-offset-2">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <div class="panel-title">Sign In: In-Memory Authentication</div>
-            </div>
 
-            <div style="padding-top: 30px" class="panel-body">
-                <!-- Login Form -->
-                <form th:action="@{/index}" method="POST" class="form-signin">
-                    <!-- Place for messages: error, alert etc ... -->
-                    <div class="form-group">
-                        <div class="col-xs-15">
-                            <div>
-                                <!-- Check for login error -->
-                                <div th:if="${param.error}">
-                                    <div class="alert alert-danger col-xs-offset-1 col-xs-10">
-                                        Invalid username and password.
-                                    </div>
-                                </div>
-                                <!-- Check for logout -->
-                                <div th:if="${param.logout}">
-                                    <div class="alert alert-success col-xs-offset-1 col-xs-10">
-                                        You have been logged out.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- User name -->
-                    <div style="margin-bottom: 25px" class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+<div class="form-container">
+    <h2>Login</h2>
+    <form:form action="loginUser" modelAttribute="user" method="post" autocomplete="false">
 
-                        <input type="text" name="username" placeholder="username" class="form-control">
-                    </div>
-                    <!-- Password -->
-                    <div style="margin-bottom: 25px" class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-
-                        <input type="password" name="password" placeholder="password" class="form-control">
-                    </div>
-                    <!-- Login/Submit Button -->
-                    <div style="margin-top: 10px" class="form-group">
-                        <div class="col-sm-6 controls">
-                            <button type="submit" class="btn btn-success">Login</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <form:input path="username" type="text" class="form-control" id="username" placeholder="Enter username"/>
         </div>
-    </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <form:input path="password" type="password" class="form-control" id="password" placeholder="Password"/>
+        </div>
+
+        <!-- Error message -->
+        <%
+            String errorMessage = (String) request.getAttribute("errorMessage");
+            if (errorMessage != null && !errorMessage.isEmpty()) {
+        %>
+        <div class="alert alert-danger" role="alert">
+            <%= errorMessage %>
+        </div>
+        <%
+            }
+        %>
+
+        <button type="submit" class="btn btn-primary">Login</button>
+        <a type="button" href="${pageContext.request.contextPath}/register" class="button">Register</a>
+
+    </form:form>
 </div>
+
+<!-- Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

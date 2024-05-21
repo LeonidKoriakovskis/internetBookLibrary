@@ -1,9 +1,11 @@
 package com.spring.internetBookLibrary.service;
 
 import com.spring.internetBookLibrary.model.Publisher;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface PublisherService {
     public List<Publisher> findAll();
 

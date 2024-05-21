@@ -3,9 +3,13 @@ package com.spring.internetBookLibrary.service;
 import com.spring.internetBookLibrary.exception.NotFoundException;
 import com.spring.internetBookLibrary.model.Book;
 import com.spring.internetBookLibrary.repository.BookRepository;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
+@Primary
 public class BookServiceImpl implements BookService{
     final BookRepository bookRepository;
 
@@ -36,6 +40,6 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public List<Book> findBookByName(String keyword) {
-        return bookRepository.findByName(keyword);
+        return bookRepository.findBookByName(keyword);
     }
 }
