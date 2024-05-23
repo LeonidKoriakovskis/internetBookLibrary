@@ -8,15 +8,15 @@ import java.util.List;
 import java.util.Optional;
 @Service
 public interface AuthorService {
-    public List<Author> findAll();
+    List<Author> findAll();
 
-    public Author findById(int id);
+    Author findById(int id);
 
-    public void save(Author author);
+    void save(Author author);
 
-    public void deleteById(int id);
+    void deleteById(int id);
 
-    public void addBook(Author author, Book book);
+    void addBook(Author author, Book book);
 
     Optional<Author> getAuthor(Integer authorId);
 

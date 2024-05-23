@@ -1,4 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,18 +48,6 @@
             <label for="password">Password</label>
             <form:input path="password" type="password" class="form-control" id="password" placeholder="Password"/>
         </div>
-
-        <!-- Error message -->
-        <%
-            String errorMessage = (String) request.getAttribute("errorMessage");
-            if (errorMessage != null && !errorMessage.isEmpty()) {
-        %>
-        <div class="alert alert-danger" role="alert">
-            <%= errorMessage %>
-        </div>
-        <%
-            }
-        %>
 
         <button type="submit" class="btn btn-primary">Login</button>
         <a type="button" href="${pageContext.request.contextPath}/register" class="button">Register</a>

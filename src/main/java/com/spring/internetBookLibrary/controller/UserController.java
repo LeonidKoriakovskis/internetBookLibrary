@@ -36,10 +36,10 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/index")
     public String index(Model model) {
         model.addAttribute("user", new User());
-        return "login";
+        return "index";
     }
 
     @GetMapping("/register")
@@ -82,7 +82,7 @@ public class UserController {
         if (bCryptPasswordEncoder.matches(loginUser.getPassword(), userFromDB.getPassword())) {
             // Passwords match, user is authenticated
             session.setAttribute("username", userFromDB.getUsername());
-            return "redirect:/calculator"; // Redirect to the user's profile page
+            return "redirect:/index"; // Redirect to the user's profile page
         } else {
             return "redirect:/login";
         }

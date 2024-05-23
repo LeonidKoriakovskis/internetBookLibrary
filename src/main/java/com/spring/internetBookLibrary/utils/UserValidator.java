@@ -38,7 +38,7 @@ public class UserValidator implements Validator {
             errors.rejectValue("password", "User.invalid.password");
         }
         if (!user.getPassword().equals(user.getConfirmPassword())) {
-            errors.rejectValue("passwordConfirm", "User.diff.passwordConfirm");
+            errors.rejectValue("confirmPassword", "User.diff.confirmPassword");
         }
         // Check if the username already exists
         if (userService.getUserByUsername(user.getUsername()) != null) {
@@ -52,17 +52,16 @@ public class UserValidator implements Validator {
         if (user.getPassword().length() < 8 || user.getPassword().length() > 21) {
             errors.rejectValue("password", "User.size.password");
         }
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "passwordConfirm", "NotEmpty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confirmPassword", "NotEmpty");
         if (user.getPassword().length() < 8 || user.getPassword().length() > 21) {
-            errors.rejectValue("passwordConfirm", "User.size.passwordConfirm");
+            errors.rejectValue("confirmPassword", "User.size.confirmPassword");
         }
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty");
         if (user.getEmail() == null || user.getEmail().length() > 121) {
             errors.rejectValue("email", "User.size.email");
         }
-        // Check if the user exists
-        if (userFromDB == null || !bCryptPasswordEncoder.matches(user.getPassword(), userFromDB.getPassword())) {
-            errors.reject("User.exists.password");
+        if (userFromDB != null && !bCryptPasswordEncoder.matches(user.getPassword(), userFromDB.getPassword())) {
+            errors.rejectValue("password", "User.exists.password");
         }
     }
 

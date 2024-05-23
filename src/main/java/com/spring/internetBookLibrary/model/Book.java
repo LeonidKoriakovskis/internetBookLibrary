@@ -8,24 +8,24 @@ import jakarta.persistence.*;
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "bookId")
+    @Column(name = "book_id")
     Integer bookId;
-    @Column(name = "bookName")
+    @Column(name = "book_name")
     String bookName;
-    @Column(name = "serialName")
+    @Column(name = "serial_name")
     String serialName;
-    @Column(name = "booksAuthor")
+    @Column(name = "books_author")
     String booksAuthor;
     @Column(name = "description")
     String description;
     @Column(name = "isbn")
     String isbn;
     @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-    @JoinColumn(name = "authorId"   )
+    @JoinColumn(name = "author_id"   )
     Author author;
 
     @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-    @JoinColumn(name = "publisherId")
+    @JoinColumn(name = "publisher_id")
     private Publisher publisher;
 
     public Book() {

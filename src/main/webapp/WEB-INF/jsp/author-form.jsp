@@ -15,6 +15,7 @@
 </head>
 
 <body>
+<jsp:include page="header.jsp" />
 <div class="container">
     <h3>Author Directory</h3>
     <hr>
@@ -23,7 +24,7 @@
     <%--@elvariable id="authors" type="jakarta"--%>
     <form:form action="${pageContext.request.contextPath}/author/save" modelAttribute="authors" method="POST">
         <!-- Add hidden form field to handle update -->
-        <form:hidden path="id" />
+        <form:hidden path="authorId" />
         <form:input path="authorName" class="form-control mb-4 col-4" placeholder="Author name" />
         <form:input path="description" class="form-control mb-4 col-4" placeholder="Description" />
         <button type="submit" class="btn btn-info col-2">Save</button>

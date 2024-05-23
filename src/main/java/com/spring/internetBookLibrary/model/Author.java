@@ -12,9 +12,9 @@ import java.util.List;
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "authorId")
+    @Column(name = "author_id")
     Integer authorId;
-    @Column(name = "authorName")
+    @Column(name = "author_name")
     String authorName;
     @Column(name = "description")
     String description;

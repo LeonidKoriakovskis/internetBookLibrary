@@ -30,7 +30,7 @@ public class PublisherController {
         // add to the spring model
         theModel.addAttribute("publishers", thePublishers);
 
-        return "list-publishers";
+        return "list-publisher";
     }
 
     @GetMapping("/showFormForAdd")

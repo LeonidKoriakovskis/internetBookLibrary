@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
 
         // Pagal nutylėjimą naujas vartotojas bus "user".
         // Saugumo sumetimais paprastą vartotoją padaryti "admin" galima, kol kas, tik per duomenų bazę
-        user.setRole("user");
+        user.setRole("ROLE_USER");
 
         userRepository.save(user);
     }
@@ -39,7 +39,6 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByUsername(username);
         return user != null && bCryptPasswordEncoder.encode(password).equals(user.getPassword());
     }
-
 
     @Override
     public User getUserById(int id) {

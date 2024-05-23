@@ -18,4 +18,5 @@ public interface UserService {
     User getUserByUsername(String username);
 
     boolean authenticateUser(String username, String password);
+
 }
